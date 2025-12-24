@@ -1,0 +1,68 @@
+import type { Configuration } from 'webpack';
+import { container } from 'webpack';
+import 'webpack-dev-server';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import path from 'path';
+
+const config: Configuration = {
+  mode: 'development',
+  entry: './src/index.ts',
+
+  output: {
+    publicPath: 'http://localhost:3002/',
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].bundle.js',
+    clean: true,
+  },
+
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ],
+  },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html',  // or create this file
+    }),
+    new container.ModuleFederationPlugin({
+      name: 'app2',
+      filename: 'remoteEntry.js',
+
+      exposes: {
+        './App': './src/App',
+      },
+
+      shared: {
+        react: {
+          singleton: true,
+          eager: true,
+          requiredVersion: '^19.2.3',
+        },
+        'react-dom': {
+          singleton: true,
+          eager: true,
+          requiredVersion: '^19.2.3',
+        },
+      },
+    }),
+  ],
+
+  devServer: {
+    port: 3002, headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+    },
+  },
+};
+
+export default config;
