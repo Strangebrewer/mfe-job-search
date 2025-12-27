@@ -3,6 +3,7 @@ import { container } from 'webpack';
 import 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
+import webpack from 'webpack';
 
 const config: Configuration = {
   mode: 'development',
@@ -15,6 +16,7 @@ const config: Configuration = {
     clean: true,
   },
 
+
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
@@ -23,7 +25,13 @@ const config: Configuration = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: {
+          loader: 'ts-loader',
+          options: {
+            configFile: path.resolve(__dirname, "tsconfig.json"),
+            transpileOnly: true,
+          }
+        },
         exclude: /node_modules/,
       },
     ],
@@ -33,7 +41,7 @@ const config: Configuration = {
     new HtmlWebpackPlugin({
       template: './public/index.html',  // or create this file
     }),
-    new container.ModuleFederationPlugin({
+    new webpack.container.ModuleFederationPlugin({
       name: 'app2',
       filename: 'remoteEntry.js',
 
@@ -42,22 +50,15 @@ const config: Configuration = {
       },
 
       shared: {
-        react: {
-          singleton: true,
-          eager: true,
-          requiredVersion: '^19.2.3',
-        },
-        'react-dom': {
-          singleton: true,
-          eager: true,
-          requiredVersion: '^19.2.3',
-        },
+        react: { singleton: true },
+        'react-dom': { singleton: true },
       },
     }),
   ],
 
   devServer: {
-    port: 3002, headers: {
+    port: 3002,
+    headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
       'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
