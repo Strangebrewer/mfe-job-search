@@ -12,7 +12,6 @@ const config: Configuration = {
   entry: './src/index.ts',
 
   output: {
-    // publicPath: 'http://localhost:3002/',
     publicPath: 'auto',
     uniqueName: APP_NAME,
     chunkLoadingGlobal: `webpackChunk_${APP_NAME}`,
@@ -49,7 +48,7 @@ const config: Configuration = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',  // or create this file
+      template: './public/index.html',
     }),
     new webpack.container.ModuleFederationPlugin({
       name: APP_NAME,
