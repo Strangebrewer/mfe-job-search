@@ -3,7 +3,7 @@ import './index.css';
 
 const App: React.FC = () => {
   return (
-    <main className='tw:bg-yellow-500 tw:grow'>Hello, Woyld from App 2!</main>
+    <main className='tw:grow'>Hello, Woyld from App 2!</main>
   )
 }
 
