@@ -2,7 +2,7 @@ import React from 'react';
 
 const App: React.FC = () => {
   return (
-    <div>Hello, Woyld from App 2!</div>
+    <div className='bg-blue-500'>Hello, Woyld from App 2!</div>
   )
 }
 

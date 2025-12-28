@@ -5,12 +5,18 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 import webpack from 'webpack';
 
+const APP_NAME = 'mfe_app_two';
+
 const config: Configuration = {
   mode: 'development',
   entry: './src/index.ts',
 
   output: {
-    publicPath: 'http://localhost:3002/',
+    // publicPath: 'http://localhost:3002/',
+    publicPath: 'auto',
+    uniqueName: APP_NAME,
+    chunkLoadingGlobal: `webpackChunk_${APP_NAME}`,
+    crossOriginLoading: 'anonymous',
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.js',
     clean: true,
@@ -34,6 +40,10 @@ const config: Configuration = {
         },
         exclude: /node_modules/,
       },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      }
     ],
   },
 
@@ -42,7 +52,7 @@ const config: Configuration = {
       template: './public/index.html',  // or create this file
     }),
     new webpack.container.ModuleFederationPlugin({
-      name: 'app2',
+      name: APP_NAME,
       filename: 'remoteEntry.js',
 
       exposes: {
@@ -61,7 +71,8 @@ const config: Configuration = {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-      'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+      // 'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+      'Access-Control-Allow-Headers': '*',
     },
   },
 };
