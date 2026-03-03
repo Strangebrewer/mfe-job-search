@@ -8,6 +8,7 @@ const App: React.FC<any> = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="derp" element={<div>Hey there, Derp!</div>} />
+      <Route path="*" element={<div>Error, Will Robintino!</div>} />
     </Routes>
   )
 }

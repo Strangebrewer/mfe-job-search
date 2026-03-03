@@ -8,6 +8,8 @@ const Home: React.FC = () => {
       <button onClick={() => navigate('/stuff/derp')}>Derp!</button>
       <br/>
       <button onClick={() => navigate('/shizzle')}>Fake Route!</button>
+      <br/>
+      <button onClick={() => navigate('/stuff/shizzle')}>Fake Route 2!</button>
     </div>
   )
 }
