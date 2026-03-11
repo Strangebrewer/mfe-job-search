@@ -8,7 +8,13 @@
     "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "preserveSymlinks": false,
+    "paths": {
+      "axios": ["./node_modules/axios"],
+      "react": ["./node_modules/react"],
+      "react-dom": ["./node_modules/react-dom"]
+    }
   },
   "ts-node": {
     "compilerOptions": {

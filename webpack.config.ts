@@ -4,6 +4,10 @@ import 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 import webpack from 'webpack';
+// import { fileURLToPath } from "url";
+
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 const APP_NAME = 'mfe_app_two';
 
@@ -24,6 +28,12 @@ const config: Configuration = {
 
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    symlinks: true,
+    alias: {
+      axios: path.resolve(__dirname, "node_modules/axios"),
+      react: path.resolve(__dirname, "node_modules/react"),
+      "react-dom": path.resolve(__dirname, "node_modules/react-dom"),
+    },
   },
 
   module: {
