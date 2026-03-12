@@ -10,34 +10,34 @@ importers:
     dependencies:
       '@bka-stuff/mfe-utils':
         specifier: github:Strangebrewer/mfe-utils#main
-        version: https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/0c2f06d8ca92620484d67031e6604fe8e6b3b047(axios@1.13.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/5244638dbe007b71212cc8fe8f3853b50d83744c(axios@1.13.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tanstack/react-query':
-        specifier: ^5.81.5
+        specifier: ^5.90.21
         version: 5.90.21(react@18.3.1)
       axios:
         specifier: 1.13.6
         version: 1.13.6
       react:
-        specifier: ^18.2.0
+        specifier: ^18.3.1
         version: 18.3.1
       react-dom:
-        specifier: ^18.2.0
+        specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       react-router-dom:
-        specifier: ^7.11.0
+        specifier: ^7.13.1
         version: 7.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       uuid:
         specifier: ^8.3.2
         version: 8.3.2
       zustand:
-        specifier: ^5.0.6
+        specifier: ^5.0.11
         version: 5.0.11(@types/react@18.3.27)(react@18.3.1)
     devDependencies:
       '@tailwindcss/postcss':
-        specifier: ^4.1.18
+        specifier: ^4.2.1
         version: 4.2.1
       '@types/node':
-        specifier: ^25.0.3
+        specifier: ^25.4.0
         version: 25.4.0
       '@types/react':
         specifier: 18.3.27
@@ -46,25 +46,25 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.23
+        specifier: ^10.4.27
         version: 10.4.27(postcss@8.5.8)
       css-loader:
-        specifier: ^7.1.2
+        specifier: ^7.1.4
         version: 7.1.4(webpack@5.103.0)
       html-webpack-plugin:
-        specifier: ^5.6.5
+        specifier: ^5.6.6
         version: 5.6.6(webpack@5.103.0)
       postcss:
-        specifier: ^8.5.6
+        specifier: ^8.5.8
         version: 8.5.8
       postcss-loader:
-        specifier: ^8.2.0
+        specifier: ^8.2.1
         version: 8.2.1(postcss@8.5.8)(typescript@5.9.3)(webpack@5.103.0)
       style-loader:
         specifier: ^4.0.0
         version: 4.0.0(webpack@5.103.0)
       tailwindcss:
-        specifier: ^4.1.18
+        specifier: ^4.2.1
         version: 4.2.1
       ts-loader:
         specifier: ^9.5.4
@@ -105,8 +105,8 @@ packages:
     resolution: {integrity: sha512-qSs4ifwzKJSV39ucNjsvc6WVHs6b7S03sOh2OcHF9UHfVPqWWALUsNUVzhSBiItjRZoLHx7nIarVjqKVusUZ1Q==, tarball: https://registry.npmjs.org/@babel/helper-validator-identifier/-/helper-validator-identifier-7.28.5.tgz}
     engines: {node: '>=6.9.0'}
 
-  '@bka-stuff/mfe-utils@https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/0c2f06d8ca92620484d67031e6604fe8e6b3b047':
-    resolution: {tarball: https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/0c2f06d8ca92620484d67031e6604fe8e6b3b047}
+  '@bka-stuff/mfe-utils@https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/5244638dbe007b71212cc8fe8f3853b50d83744c':
+    resolution: {tarball: https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/5244638dbe007b71212cc8fe8f3853b50d83744c}
     version: 0.1.0
     peerDependencies:
       axios: 1.13.6
@@ -2120,7 +2120,7 @@ snapshots:
 
   '@babel/helper-validator-identifier@7.28.5': {}
 
-  '@bka-stuff/mfe-utils@https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/0c2f06d8ca92620484d67031e6604fe8e6b3b047(axios@1.13.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@bka-stuff/mfe-utils@https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/5244638dbe007b71212cc8fe8f3853b50d83744c(axios@1.13.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       axios: 1.13.6
       jwt-decode: 4.0.0
