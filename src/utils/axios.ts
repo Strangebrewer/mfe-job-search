@@ -9,7 +9,6 @@ export const axiosAuth = axios.create({ baseURL: BASE_URL });
 createAuthClient({
   axiosPublic,
   axiosAuth,
-  refreshEndpoint: '/tokens/exchange',
   onLogout: () => {
     // whatever the shell should do
     console.log("Logged out");
