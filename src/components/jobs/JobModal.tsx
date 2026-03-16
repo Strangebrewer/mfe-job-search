@@ -1,6 +1,7 @@
-import { FC, useState } from "react";
-import { Modal, Button } from "@bka-stuff/mfe-utils";
+import { FC, SyntheticEvent, useState } from "react";
+import { Modal, Button, Label, Input, useUserStore } from "@bka-stuff/mfe-utils";
 import { useCreateJob } from "../../hooks/jobHooks";
+import { useGetRecruiters } from "../../hooks/recruiterHooks";
 
 type JobModalProps = {
   isOpen: boolean;
@@ -9,6 +10,7 @@ type JobModalProps = {
 
 const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
   const [jobTitle, setJobTitle] = useState('');
+  const { data: recruiters } = useGetRecruiters();
 
   const { mutate: createJob } = useCreateJob();
 
@@ -16,7 +18,9 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
     onClose();
   }
 
-  function submit() {
+  function submit(e?: SyntheticEvent) {
+    e?.preventDefault();
+    console.log(`submit this sumbitch`);
     if (jobTitle) {
       // createJob({ jobTitle });
     }
@@ -24,11 +28,11 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <Modal isOpen={isOpen} close={closeModal}>
-      <div>
-        <form action="">
+      <div className="job-modal-body">
+        <form onSubmit={submit}>
           <div>
-            <label className="tw:block">job title</label>
-            <input
+            <Label text="job title" />
+            <Input
               type="text"
               name="jobTitle"
               value={jobTitle}
@@ -37,6 +41,16 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           <div>
+            <label className="tw:block">job title</label>
+            <select name="recruiter">
+              {recruiters?.map((r: any) => {
+                return <option key={r.id} value={r.id}>{r.name}</option>
+              })}
+            </select>
+          </div>
+
+          <div>
+            <button type="submit" style={{ display: 'none' }} />
             <Button variant="red" text="Cancel" onClick={closeModal} />
             <Button
               variant="blue"

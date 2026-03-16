@@ -73,12 +73,16 @@ const config: Configuration = {
         'react-dom': { singleton: true },
         'react-router-dom': { singleton: true },
         "@tanstack/react-query": { singleton: true },
+        zustand: { singleton: true },
+        '@bka-stuff/mfe-utils': { singleton: true },
       },
     }),
   ],
 
   devServer: {
     port: 3002,
+    hot: false,
+    historyApiFallback: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',

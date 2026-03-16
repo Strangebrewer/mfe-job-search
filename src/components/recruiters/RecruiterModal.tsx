@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, SyntheticEvent, useState } from "react";
 import { Modal, Button } from "@bka-stuff/mfe-utils";
 import { useCreateRecruiter } from "../../hooks/recruiterHooks";
 
@@ -25,7 +25,8 @@ const RecruiterModal: FC<RecruiterModalProps> = ({ isOpen, onClose }) => {
     onClose();
   }
 
-  function submit() {
+  function submit(e?: SyntheticEvent) {
+    e?.preventDefault();
     if (name && company && email) {
       createRecruiter({ name, company, email, phone, rating });
     }
@@ -34,7 +35,7 @@ const RecruiterModal: FC<RecruiterModalProps> = ({ isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} close={closeModal}>
       <div>
-        <form action="">
+        <form onSubmit={submit}>
           <div>
             <label className="tw:block">name</label>
             <input
@@ -89,6 +90,7 @@ const RecruiterModal: FC<RecruiterModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           <div>
+            <button type="submit" style={{ display: 'none' }}></button>
             <Button variant="red" text="Cancel" onClick={closeModal} />
             <Button
               variant="blue"
