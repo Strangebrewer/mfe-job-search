@@ -1,16 +1,80 @@
 .jobs-container {
-  width: 300px;
-  height: 300px;
+  border: 1px solid var(--candy);
   border-radius: 9px;
   box-shadow: 3px 3px 6px #ccc;
-  border: 1px solid var(--candy);
+  min-height: 300px;
+  padding: 12px;
+  width: 800px;
+
+  & > h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
 }
 
 .job-modal-body {
-  padding: 32px;
+  padding: 32px 48px;
+  width: 600px;
   & > h2 {
     color: var(--candy);
     font-size: 24px;
     text-align: center;
+  }
+}
+
+.job-card {
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px #aaa;
+  margin-bottom: 12px;
+  padding: 16px 16px 16px 24px;
+  position: relative;
+
+  & > .--first-line {
+    display: flex;
+    justify-content: space-between;
+
+    & > h2,
+    & > p {
+      font-size: 18px;
+      width: 330px;
+
+      & > span {
+        font-weight: 600;
+      }
+    }
+  }
+
+  & > .--second-line {
+    display: flex;
+    & > p {
+      font-size: 14px;
+      width: 240px;
+
+      & > span {
+        font-weight: 600;
+      }
+    }
+  }
+
+  & > .--first-line .--actions {
+    display: flex;
+    width: 30px;
+    gap: 6px;
+    /* width: 50px; */
+    justify-content: end;
+  }
+
+  & > .--expansion-btn--expanded {
+    position: absolute;
+    top: 16px;
+    left: 6px;
+  }
+
+  & > .--expansion-btn {
+    position: absolute;
+    top: 16px;
+    left: 8px;
   }
 }
