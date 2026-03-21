@@ -83,6 +83,12 @@ const config: Configuration = {
     port: 3002,
     hot: false,
     historyApiFallback: true,
+    client: {
+      overlay: {
+        warnings: false,
+        errors: true,
+      },
+    },
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',

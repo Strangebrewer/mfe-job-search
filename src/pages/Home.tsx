@@ -1,7 +1,7 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import RecruitersList from '../components/recruiters/RecruitersList';
-import JobsList from '../components/jobs/JobsList';
 import { useUserStore } from '@bka-stuff/mfe-utils';
+import JobsList from '../components/jobs/JobsList';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();

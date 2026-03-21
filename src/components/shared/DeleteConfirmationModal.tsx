@@ -7,18 +7,20 @@ type DeleteConfirmationModalProps = {
   item: Obj;
   onConfirm: () => void;
   onClose: () => void;
+  action?: string;
 }
 
-const DeleteConfirmationModal: FC<DeleteConfirmationModalProps> = ({ isOpen, item, onClose, onConfirm }) => {
+const DeleteConfirmationModal: FC<DeleteConfirmationModalProps> = ({ isOpen, item, onClose, onConfirm, action = 'delete' }) => {
+  const actionLabel = action.charAt(0).toUpperCase() + action.slice(1);
   return (
     <Modal isOpen={isOpen} close={onClose}>
       <div className="delete-confirmation-modal">
-        <p className="tw:mb-[24px]">Are you sure you want to delete {item?.name}?</p>
+        <p className="tw:mb-[24px]">Are you sure you want to {action} {item?.name}?</p>
         <div className="delete-confirmation-modal--buttons">
           <Button variant="grey" text="Cancel" onClick={onClose} />
           <Button
             variant="red"
-            text="Delete"
+            text={actionLabel}
             onClick={onConfirm}
             last
           />

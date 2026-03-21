@@ -1,12 +1,11 @@
 import { FC, SyntheticEvent, useState } from "react";
-import { Modal, Button, Label, Input, useUserStore, Select, Textarea } from "@bka-stuff/mfe-utils";
-import { useCreateJob, useUpdateJob } from "../../hooks/jobHooks";
+import { Modal, Button, Label, Input, Select } from "@bka-stuff/mfe-utils";
+import { useCreateJob } from "../../hooks/jobHooks";
 import { useGetRecruiters } from "../../hooks/recruiterHooks";
 
 type JobModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  // job?: Obj;
 }
 
 const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
@@ -20,14 +19,9 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
   const [companyState, setCompanyState] = useState('');
   const [poc, setPoc] = useState('');
   const [pocTitle, setPocTitle] = useState('');
-  // const [interviews, setInterviews] = useState([]);
-  // const [comments, setComments] = useState([]);
-  // const [status, setStatus] = useState('');
-  // const [archived, setArchived] = useState('');
   const { data: recruiters } = useGetRecruiters();
 
   const { mutate: createJob } = useCreateJob();
-  // const { mutate: updateJob } = useUpdateJob();
 
   function closeModal() {
     onClose();
@@ -41,8 +35,6 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
       workFrom,
       dateApplied,
       companyName,
-      // interviews,
-      // comments,
     };
     if (recruiter) jobToSave.recruiter = recruiter;
     if (companyAddress) jobToSave.companyAddress = companyAddress;
@@ -51,20 +43,8 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
     if (poc) jobToSave.poc = poc;
     if (pocTitle) jobToSave.pocTitle = pocTitle;
 
-    // if (job?.id) {
-    //   if (status) jobToSave.status = status;
-    //   if (archived) jobToSave.status = archived;
-    //   jobToSave.id = job.id;
-    //   updateJob(jobToSave);
-    // } else {
-      createJob(jobToSave);
-    // }
+    createJob(jobToSave);
     closeModal();
-  }
-
-  function formatInterviews(e: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target;
-
   }
 
   function validateForm() {
@@ -192,18 +172,6 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
               full
             />
           </div>
-
-          {/* {job ? (
-            <>
-              <div>
-                <Label text="Interviews" />
-                <Textarea
-                  name="pocTitle"
-                  value={pocTitle}
-                  onChange={(e) => setPocTitle(e.target.value)} />
-              </div>
-            </>
-          ) : null} */}
 
           <div className="tw:mt-[16px] tw:flex tw:justify-end">
             <button type="submit" style={{ display: 'none' }} />
