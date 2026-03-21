@@ -9,7 +9,7 @@ import webpack from 'webpack';
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
 
-const APP_NAME = 'mfe_app_two';
+const APP_NAME = 'mfe_job_search';
 
 const config: Configuration = {
   mode: 'development',
