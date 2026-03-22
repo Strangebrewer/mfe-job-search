@@ -9,6 +9,7 @@ const App: React.FC<any> = () => {
     <Routes>
       <Route index element={<Home />} />
 
+      {/* these routes are only to demo how routes can be built */}
       <Route path="authorized" element={<div> This page is for authorized users</div>} />
       <Route path="guest" element={<div> This page is for guests</div>} />
 

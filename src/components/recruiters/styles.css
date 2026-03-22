@@ -1,7 +1,105 @@
 .recruiters-container {
-  width: 300px;
-  height: 300px;
-  border-radius: 9px;
-  box-shadow: 3px 3px 6px #ccc;
-  border: 1px solid var(--candy);
+  min-height: 300px;
+  padding: 12px;
+  width: 1200px;
+
+  & > h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+}
+
+.recruiter-modal-body {
+  padding: 32px 48px;
+  width: 600px;
+  & > h2 {
+    color: var(--candy);
+    font-size: 24px;
+    text-align: center;
+  }
+
+  & > form > .--stars {
+    cursor: pointer;
+    display: flex;
+    gap: 3px;
+    color: #f5a623;
+    font-size: 15px;
+
+    & > i {
+      transition: transform 0.1s;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+.recruiters-grid {
+  width: 100%;
+}
+
+.recruiters-grid-header,
+.recruiter-grid-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 1.5fr 180px 1.8fr 110px 70px;
+}
+
+.recruiters-grid-header {
+  border-bottom: 2px solid #ccc;
+
+  & > div {
+    font-weight: 600;
+    padding: 8px 12px;
+  }
+}
+
+.recruiter-grid-row-wrapper {
+  border-bottom: 1px solid #eee;
+
+  &:hover > .recruiter-grid-row > div {
+    background-color: #f5f5f5;
+  }
+}
+
+.recruiter-grid-row {
+  & > div {
+    align-items: center;
+    display: flex;
+    padding: 10px 12px;
+  }
+
+  & > .--truncate {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+  }
+
+  & > .--toggle-cell {
+    padding: 10px 4px;
+  }
+
+  & > .--stars {
+    cursor: pointer;
+    display: flex;
+    gap: 3px;
+    color: #f5a623;
+    font-size: 15px;
+
+    & > i {
+      transition: transform 0.1s;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  & > .--actions {
+    display: flex;
+    gap: 6px;
+    justify-content: flex-end;
+  }
 }

@@ -54,7 +54,7 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} close={closeModal}>
       <div className="job-modal-body">
-        <h2 className="tw:mb-[16px] tw">New Job</h2>
+        <h2 className="tw:mb-[16px]">New Job</h2>
         <form onSubmit={submit}>
           <div>
             <Label text="Job Title *" />
@@ -64,6 +64,7 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
               value={jobTitle}
               onChange={(e) => setJobTitle(e.target.value)}
               full
+              autofocus
             />
           </div>
 

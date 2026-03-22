@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { ActionButton } from "@bka-stuff/mfe-utils";
 import { useDeleteJob, useGetJobs, useUpdateJob } from "../../hooks/jobHooks";
-import JobModal from "./JobCreateModal";
+import JobModal from "./JobModal";
 import DeleteConfirmationModal from "../shared/DeleteConfirmationModal";
 import JobRow from "./JobRow";
 import "./styles.css";

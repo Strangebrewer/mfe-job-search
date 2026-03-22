@@ -197,7 +197,7 @@ const JobRowGrid: FC<JobRowGridProps> = ({ job, onClickDelete, onClickArchive })
               <div className="--address">
                 <h4>Company Address</h4>
                 <p>{renderEditable('companyAddress', job.companyAddress)}</p>
-                <p>{renderEditable('companyCity', job.companyCity)}, {renderEditable('companyState', job.companyState)}</p>
+                <p className="--city-state">{renderEditable('companyCity', job.companyCity)}, {renderEditable('companyState', job.companyState)}</p>
               </div>
 
               <div className="--poc">

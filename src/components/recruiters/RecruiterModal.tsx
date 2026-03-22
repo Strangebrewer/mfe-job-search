@@ -1,6 +1,7 @@
 import { FC, SyntheticEvent, useState } from "react";
-import { Modal, Button } from "@bka-stuff/mfe-utils";
+import { Modal, Button, Label, Input, Select } from "@bka-stuff/mfe-utils";
 import { useCreateRecruiter } from "../../hooks/recruiterHooks";
+import "./styles.css";
 
 type RecruiterModalProps = {
   isOpen: boolean;
@@ -13,6 +14,7 @@ const RecruiterModal: FC<RecruiterModalProps> = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [rating, setRating] = useState(1);
+  const [hoverRating, setHoverRating] = useState(0);
 
   const { mutate: createRecruiter } = useCreateRecruiter();
 
@@ -32,64 +34,72 @@ const RecruiterModal: FC<RecruiterModalProps> = ({ isOpen, onClose }) => {
     }
   }
 
+  const displayRating = hoverRating || rating || 1;
+
   return (
     <Modal isOpen={isOpen} close={closeModal}>
-      <div>
+      <div className="recruiter-modal-body">
+        <h2 className="tw:mb-[16px]">New Recruiter</h2>
         <form onSubmit={submit}>
           <div>
-            <label className="tw:block">name</label>
-            <input
+            <Label text="Name" />
+            <Input
               type="text"
               name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              full
+              autofocus
             />
           </div>
 
           <div>
-            <label className="tw:block">company</label>
-            <input
+            <Label text="Company" />
+            <Input
               type="text"
               name="company"
               value={company}
               onChange={(e) => setCompany(e.target.value)}
+              full
             />
           </div>
 
           <div>
-            <label className="tw:block">phone</label>
-            <input
+            <Label text="Phone" />
+            <Input
               type="text"
               name="phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+              full
             />
           </div>
 
           <div>
-            <label className="tw:block">email</label>
-            <input
+            <Label text="Email" />
+            <Input
               type="text"
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              full
             />
           </div>
 
-          <div>
-            <label className="tw:block">rating</label>
-            <select
-              name="rating"
-              value={rating}
-              onChange={(e) => setRating(parseInt(e.target.value))}
-            >
-              {[1, 2, 3, 4, 5].map((r: number) => {
-                return <option key={r} value={r}>{r}</option>;
-              })}
-            </select>
+          <Label text="Rating:" />
+          <div className="--stars tw:mt-[16px]">
+            {[1, 2, 3, 4, 5].map(i => (
+              <i
+                key={i}
+                className={i <= displayRating ? "fas fa-star" : "far fa-star"}
+                onClick={() => setRating(i)}
+                onMouseEnter={() => setHoverRating(i)}
+                onMouseLeave={() => setHoverRating(0)}
+              />
+            ))}
           </div>
 
-          <div>
+          <div className="tw:mt-[16px] tw:flex tw:justify-end">
             <button type="submit" style={{ display: 'none' }}></button>
             <Button variant="red" text="Cancel" onClick={closeModal} />
             <Button
@@ -97,6 +107,7 @@ const RecruiterModal: FC<RecruiterModalProps> = ({ isOpen, onClose }) => {
               text="Save"
               onClick={submit}
               disabled={!name || !company || !email}
+              last
             />
           </div>
         </form>
