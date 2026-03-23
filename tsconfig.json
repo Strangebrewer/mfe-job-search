@@ -16,11 +16,6 @@
       "react-dom": ["./node_modules/react-dom"]
     }
   },
-  "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  },
   "include": ["src/**/*", "webpack.config.ts"],
   "exclude": ["node_modules"]
 }

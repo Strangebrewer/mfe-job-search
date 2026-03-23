@@ -5,15 +5,13 @@ import { ActionButton } from "@bka-stuff/mfe-utils";
 import DatePicker from "react-datepicker";
 import { format, parseISO } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
+import { STATUS_OPTIONS, WORK_FROM_OPTIONS } from "../../utils/constants";
 
 type JobRowGridProps = {
   job: Obj;
   onClickDelete: (id: string, name: string) => void;
   onClickArchive: (id: string, name: string) => void;
 }
-
-const STATUS_OPTIONS = ['applied', 'acked', 'interviewing', 'offer', 'declined'];
-const WORK_FROM_OPTIONS = ['home', 'hybrid', 'on-site'];
 
 const JobRowGrid: FC<JobRowGridProps> = ({ job, onClickDelete, onClickArchive }) => {
   const [expanded, setExpanded] = useState(false);
@@ -34,7 +32,6 @@ const JobRowGrid: FC<JobRowGridProps> = ({ job, onClickDelete, onClickArchive })
   }
 
   function archiveJob() {
-    console.log('job.id from archiveJob:::', job.id);
     onClickArchive(job.id, job.jobTitle);
   }
 

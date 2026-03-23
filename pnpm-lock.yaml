@@ -10,10 +10,10 @@ importers:
     dependencies:
       '@bka-stuff/mfe-utils':
         specifier: github:Strangebrewer/mfe-utils#main
-        version: https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/d83ba68d55b318133404725f37dbe7974fad8078(@types/react@18.3.27)(axios@1.13.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/cc051dc61840fbb9117d0a52bf4cecb5b832fb34(@types/react@18.3.27)(axios@1.13.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tanstack/react-query':
         specifier: ^5.90.21
-        version: 5.94.5(react@18.3.1)
+        version: 5.95.0(react@18.3.1)
       axios:
         specifier: 1.13.6
         version: 1.13.6
@@ -111,8 +111,8 @@ packages:
     resolution: {integrity: sha512-qSs4ifwzKJSV39ucNjsvc6WVHs6b7S03sOh2OcHF9UHfVPqWWALUsNUVzhSBiItjRZoLHx7nIarVjqKVusUZ1Q==, tarball: https://registry.npmjs.org/@babel/helper-validator-identifier/-/helper-validator-identifier-7.28.5.tgz}
     engines: {node: '>=6.9.0'}
 
-  '@bka-stuff/mfe-utils@https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/d83ba68d55b318133404725f37dbe7974fad8078':
-    resolution: {tarball: https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/d83ba68d55b318133404725f37dbe7974fad8078}
+  '@bka-stuff/mfe-utils@https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/cc051dc61840fbb9117d0a52bf4cecb5b832fb34':
+    resolution: {tarball: https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/cc051dc61840fbb9117d0a52bf4cecb5b832fb34}
     version: 0.1.0
     peerDependencies:
       axios: 1.13.6
@@ -388,11 +388,11 @@ packages:
   '@tailwindcss/postcss@4.2.2':
     resolution: {integrity: sha512-n4goKQbW8RVXIbNKRB/45LzyUqN451deQK0nzIeauVEqjlI49slUlgKYJM2QyUzap/PcpnS7kzSUmPb1sCRvYQ==, tarball: https://registry.npmjs.org/@tailwindcss/postcss/-/postcss-4.2.2.tgz}
 
-  '@tanstack/query-core@5.94.5':
-    resolution: {integrity: sha512-Vx1JJiBURW/wdNGP45afjrqn0LfxYwL7K/bSrQvNRtyLGF1bxQPgUXCpzscG29e+UeFOh9hz1KOVala0N+bZiA==, tarball: https://registry.npmjs.org/@tanstack/query-core/-/query-core-5.94.5.tgz}
+  '@tanstack/query-core@5.95.0':
+    resolution: {integrity: sha512-H1/CWCe8tGL3YIVeo770Z6kPbt0B3M1d/iQXIIK1qlFiFt6G2neYdkHgLapOC8uMYNt9DmHjmGukEKgdMk1P+A==, tarball: https://registry.npmjs.org/@tanstack/query-core/-/query-core-5.95.0.tgz}
 
-  '@tanstack/react-query@5.94.5':
-    resolution: {integrity: sha512-1wmrxKFkor+q8l+ygdHmv0Sq5g84Q3p4xvuJ7AdSIAhQQ7udOt+ZSZ19g1Jea3mHqtlTslLGJsmC4vHFgP0P3A==, tarball: https://registry.npmjs.org/@tanstack/react-query/-/react-query-5.94.5.tgz}
+  '@tanstack/react-query@5.95.0':
+    resolution: {integrity: sha512-EMP8B+BK9zvnAemT8M/y3z/WO0NjZ7fIUY3T3wnHYK6AA3qK/k33i7tPgCXCejhX0cd4I6bJIXN2GmjrHjDBzg==, tarball: https://registry.npmjs.org/@tanstack/react-query/-/react-query-5.95.0.tgz}
     peerDependencies:
       react: ^18 || ^19
 
@@ -701,8 +701,8 @@ packages:
   camel-case@4.1.2:
     resolution: {integrity: sha512-gxGWBrTT1JuMx6R+o5PTXMmUnhnVzLQ9SNutD4YqKtI6ap897t3tKECYla6gCWEkplXnlNybEkZg9GEGxKFCgw==, tarball: https://registry.npmjs.org/camel-case/-/camel-case-4.1.2.tgz}
 
-  caniuse-lite@1.0.30001780:
-    resolution: {integrity: sha512-llngX0E7nQci5BPJDqoZSbuZ5Bcs9F5db7EtgfwBerX9XGtkkiO4NwfDDIRzHTTwcYC8vC7bmeUEPGrKlR/TkQ==, tarball: https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001780.tgz}
+  caniuse-lite@1.0.30001781:
+    resolution: {integrity: sha512-RdwNCyMsNBftLjW6w01z8bKEvT6e/5tpPVEgtn22TiLGlstHOVecsX2KHFkD5e/vRnIE4EGzpuIODb3mtswtkw==, tarball: https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001781.tgz}
 
   chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==, tarball: https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz}
@@ -2167,7 +2167,7 @@ snapshots:
 
   '@babel/helper-validator-identifier@7.28.5': {}
 
-  '@bka-stuff/mfe-utils@https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/d83ba68d55b318133404725f37dbe7974fad8078(@types/react@18.3.27)(axios@1.13.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@bka-stuff/mfe-utils@https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/cc051dc61840fbb9117d0a52bf4cecb5b832fb34(@types/react@18.3.27)(axios@1.13.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       axios: 1.13.6
       jwt-decode: 4.0.0
@@ -2442,11 +2442,11 @@ snapshots:
       postcss: 8.5.8
       tailwindcss: 4.2.2
 
-  '@tanstack/query-core@5.94.5': {}
+  '@tanstack/query-core@5.95.0': {}
 
-  '@tanstack/react-query@5.94.5(react@18.3.1)':
+  '@tanstack/react-query@5.95.0(react@18.3.1)':
     dependencies:
-      '@tanstack/query-core': 5.94.5
+      '@tanstack/query-core': 5.95.0
       react: 18.3.1
 
   '@tsconfig/node10@1.0.12': {}
@@ -2717,7 +2717,7 @@ snapshots:
   autoprefixer@10.4.27(postcss@8.5.8):
     dependencies:
       browserslist: 4.28.1
-      caniuse-lite: 1.0.30001780
+      caniuse-lite: 1.0.30001781
       fraction.js: 5.3.4
       picocolors: 1.1.1
       postcss: 8.5.8
@@ -2768,7 +2768,7 @@ snapshots:
   browserslist@4.28.1:
     dependencies:
       baseline-browser-mapping: 2.10.10
-      caniuse-lite: 1.0.30001780
+      caniuse-lite: 1.0.30001781
       electron-to-chromium: 1.5.321
       node-releases: 2.0.36
       update-browserslist-db: 1.2.3(browserslist@4.28.1)
@@ -2798,7 +2798,7 @@ snapshots:
       pascal-case: 3.1.2
       tslib: 2.8.1
 
-  caniuse-lite@1.0.30001780: {}
+  caniuse-lite@1.0.30001781: {}
 
   chalk@4.1.2:
     dependencies:

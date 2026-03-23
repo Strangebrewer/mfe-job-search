@@ -1,11 +1,11 @@
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query';
 import jobApi from '../api/jobApi';
 
-export const useGetJobs = () => {
+export const useGetJobs = (params?: Record<string, any>) => {
   return useQuery({
-    queryKey: ['get-jobs'],
+    queryKey: ['get-jobs', params],
     queryFn: async () => {
-      const response = await jobApi.get();
+      const response = await jobApi.get(params);
       console.log('response from useGetJobs:::', response);
       return response?.data;
     }

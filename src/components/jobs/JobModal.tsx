@@ -1,5 +1,7 @@
 import { FC, SyntheticEvent, useState } from "react";
 import { Modal, Button, Label, Input, Select } from "@bka-stuff/mfe-utils";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { useCreateJob } from "../../hooks/jobHooks";
 import { useGetRecruiters } from "../../hooks/recruiterHooks";
 
@@ -12,7 +14,7 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
   const [jobTitle, setJobTitle] = useState('');
   const [workFrom, setWorkFrom] = useState('remote');
   const [recruiter, setRecruiter] = useState('');
-  const [dateApplied, setDateApplied] = useState('');
+  const [dateApplied, setDateApplied] = useState<Date | null>(null);
   const [companyName, setCompanyName] = useState('');
   const [companyAddress, setCompanyAddress] = useState('');
   const [companyCity, setCompanyCity] = useState('');
@@ -33,7 +35,7 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
     const jobToSave: Obj = {
       jobTitle,
       workFrom,
-      dateApplied,
+      dateApplied: dateApplied?.toISOString(),
       companyName,
     };
     if (recruiter) jobToSave.recruiter = recruiter;
@@ -99,12 +101,11 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
 
           <div>
             <Label text="Date Applied *" />
-            <Input
-              type="text"
-              name="dateApplied"
-              value={dateApplied}
-              onChange={(e) => setDateApplied(e.target.value)}
-              full
+            <DatePicker
+              wrapperClassName="job-modal-date-picker"
+              selected={dateApplied}
+              onChange={(date: Date | null) => setDateApplied(date)}
+              placeholderText="Select a date"
             />
           </div>
 

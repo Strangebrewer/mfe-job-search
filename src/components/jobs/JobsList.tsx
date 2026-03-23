@@ -4,13 +4,15 @@ import { useDeleteJob, useGetJobs, useUpdateJob } from "../../hooks/jobHooks";
 import JobModal from "./JobModal";
 import DeleteConfirmationModal from "../shared/DeleteConfirmationModal";
 import JobRow from "./JobRow";
+import JobsFilter from "./JobsFilter";
 import "./styles.css";
 
 const JobsList: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalState, setModalState] = useState<Obj>({ type: null, item: null });
+  const [filterParams, setFilterParams] = useState<Record<string, any> | undefined>(undefined);
 
-  const { data: jobs } = useGetJobs();
+  const { data: jobs } = useGetJobs(filterParams);
   const { mutate: deleteJob } = useDeleteJob();
   const { mutate: updateJob } = useUpdateJob();
 
@@ -55,6 +57,10 @@ const JobsList: FC = () => {
           onClick={() => setIsOpen(true)}
         />
       </h2>
+      <JobsFilter
+        onSearch={params => setFilterParams(params)}
+        onClear={() => setFilterParams(undefined)}
+      />
       <div className="jobs-grid">
         <div className="jobs-grid-header">
           <div></div>

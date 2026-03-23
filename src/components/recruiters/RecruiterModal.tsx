@@ -32,6 +32,7 @@ const RecruiterModal: FC<RecruiterModalProps> = ({ isOpen, onClose }) => {
     if (name && company && email) {
       createRecruiter({ name, company, email, phone, rating });
     }
+    closeModal();
   }
 
   const displayRating = hoverRating || rating || 1;

@@ -4,8 +4,9 @@
   width: 1200px;
 
   & > h2 {
-    font-size: 24px;
-    margin-bottom: 12px;
+    font-size: 36px;
+    font-weight: 500;
+    margin-bottom: 16px;
     text-align: center;
   }
 }
@@ -17,6 +18,25 @@
     color: var(--candy);
     font-size: 24px;
     text-align: center;
+  }
+}
+
+.job-modal-date-picker {
+  background-color: #ddd;
+  border: none;
+  border-radius: 4px;
+  box-shadow: inset 3px 3px 2px #aaa,
+    inset -3px -3px 2px #fff;
+  color: var(--indigo);
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+  outline: transparent;
+  padding: 6px 10px;
+  width: 100%;
+
+  & > div > input {
+    outline: transparent;
   }
 }
 
@@ -109,6 +129,52 @@
       font-weight: 600;
     }
   }
+}
+
+.jobs-filter {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.jobs-filter-fields {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.jobs-filter-input,
+.jobs-filter-select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+  height: 30px;
+  padding: 0 8px;
+}
+
+.jobs-filter-input {
+  width: 130px;
+}
+
+.jobs-filter-select {
+  width: 130px;
+}
+
+.jobs-filter-checkbox {
+  align-items: center;
+  display: flex;
+  font-size: 13px;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.jobs-filter-actions {
+  display: flex;
+  gap: 6px;
 }
 
 .--section {
