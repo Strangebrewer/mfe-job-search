@@ -18,6 +18,7 @@ const EMPTY_FORM: Obj = {
   dateMin: null as Date | null,
   dateMax: null as Date | null,
   archived: false,
+  includeDeclined: false,
 };
 
 function buildParams(f: Obj): Record<string, any> {
@@ -29,6 +30,7 @@ function buildParams(f: Obj): Record<string, any> {
   if (f.dateMin) params.dateMin = f.dateMin.toISOString();
   if (f.dateMax) params.dateMax = f.dateMax.toISOString();
   if (f.archived) params.archived = 'true';
+  if (f.includeDeclined) params.includeDeclined = 'true';
   return params;
 }
 
@@ -112,6 +114,14 @@ const JobsFilter: FC<JobsFilterProps> = ({ onSearch, onClear }) => {
           isClearable
         />
 
+      </div>
+
+      <div className="jobs-filter-actions">
+        <Button variant="red" text="Search" onClick={handleSearch} />
+        <Button variant="grey" text="Clear" onClick={handleClear} />
+      </div>
+
+      <div className="jobs-filter-checks">
         <label className="jobs-filter-checkbox">
           <input
             type="checkbox"
@@ -120,11 +130,14 @@ const JobsFilter: FC<JobsFilterProps> = ({ onSearch, onClear }) => {
           />
           Include archived
         </label>
-      </div>
-
-      <div className="jobs-filter-actions">
-        <Button variant="red" text="Search" onClick={handleSearch} />
-        <Button variant="grey" text="Clear" onClick={handleClear} />
+        <label className="jobs-filter-checkbox">
+          <input
+            type="checkbox"
+            checked={form.includeDeclined}
+            onChange={e => fireImmediate({ ...form, includeDeclined: e.target.checked })}
+          />
+          Include declined
+        </label>
       </div>
     </div>
   );

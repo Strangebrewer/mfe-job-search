@@ -10,20 +10,27 @@ type JobModalProps = {
   onClose: () => void;
 }
 
-const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
-  const [jobTitle, setJobTitle] = useState('');
-  const [workFrom, setWorkFrom] = useState('remote');
-  const [recruiter, setRecruiter] = useState('');
-  const [dateApplied, setDateApplied] = useState<Date | null>(null);
-  const [companyName, setCompanyName] = useState('');
-  const [companyAddress, setCompanyAddress] = useState('');
-  const [companyCity, setCompanyCity] = useState('');
-  const [companyState, setCompanyState] = useState('');
-  const [poc, setPoc] = useState('');
-  const [pocTitle, setPocTitle] = useState('');
-  const { data: recruiters } = useGetRecruiters();
+const EMPTY_FORM = {
+  jobTitle: '',
+  workFrom: 'remote',
+  recruiter: '',
+  dateApplied: null as Date | null,
+  companyName: '',
+  companyAddress: '',
+  companyCity: '',
+  companyState: '',
+  poc: '',
+  pocTitle: '',
+};
 
+const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
+  const [form, setForm] = useState(EMPTY_FORM);
+  const { data: recruiters } = useGetRecruiters();
   const { mutate: createJob } = useCreateJob();
+
+  function set(field: string, value: any) {
+    setForm(f => ({ ...f, [field]: value }));
+  }
 
   function closeModal() {
     onClose();
@@ -33,24 +40,25 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
     e?.preventDefault();
     if (!validateForm()) return;
     const jobToSave: Obj = {
-      jobTitle,
-      workFrom,
-      dateApplied: dateApplied?.toISOString(),
-      companyName,
+      jobTitle: form.jobTitle,
+      workFrom: form.workFrom,
+      dateApplied: form.dateApplied?.toISOString(),
+      companyName: form.companyName,
     };
-    if (recruiter) jobToSave.recruiter = recruiter;
-    if (companyAddress) jobToSave.companyAddress = companyAddress;
-    if (companyCity) jobToSave.companyCity = companyCity;
-    if (companyState) jobToSave.companyState = companyState;
-    if (poc) jobToSave.poc = poc;
-    if (pocTitle) jobToSave.pocTitle = pocTitle;
+    if (form.recruiter) jobToSave.recruiter = form.recruiter;
+    if (form.companyAddress) jobToSave.companyAddress = form.companyAddress;
+    if (form.companyCity) jobToSave.companyCity = form.companyCity;
+    if (form.companyState) jobToSave.companyState = form.companyState;
+    if (form.poc) jobToSave.poc = form.poc;
+    if (form.pocTitle) jobToSave.pocTitle = form.pocTitle;
 
     createJob(jobToSave);
+    setForm(EMPTY_FORM);
     closeModal();
   }
 
   function validateForm() {
-    return !!jobTitle && !!workFrom && !!dateApplied && !!companyName
+    return !!form.jobTitle && !!form.workFrom && !!form.dateApplied && !!form.companyName;
   }
 
   return (
@@ -63,8 +71,8 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
             <Input
               type="text"
               name="jobTitle"
-              value={jobTitle}
-              onChange={(e) => setJobTitle(e.target.value)}
+              value={form.jobTitle}
+              onChange={(e) => set('jobTitle', e.target.value)}
               full
               autofocus
             />
@@ -74,8 +82,8 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
             <Label text="Work Location *" />
             <Select
               name="workFrom"
-              value={workFrom}
-              onChange={(e) => setWorkFrom(e.target.value)}
+              value={form.workFrom}
+              onChange={(e) => set('workFrom', e.target.value)}
               full
             >
               <option value={'remote'}>Remote</option>
@@ -88,8 +96,8 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
             <Label text="Recruiter" />
             <Select
               name="recruiter"
-              value={recruiter}
-              onChange={(e) => setRecruiter(e.target.value)}
+              value={form.recruiter}
+              onChange={(e) => set('recruiter', e.target.value)}
               full
             >
               <option value="">--Select a recruiter</option>
@@ -103,8 +111,8 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
             <Label text="Date Applied *" />
             <DatePicker
               wrapperClassName="job-modal-date-picker"
-              selected={dateApplied}
-              onChange={(date: Date | null) => setDateApplied(date)}
+              selected={form.dateApplied}
+              onChange={(date: Date | null) => set('dateApplied', date)}
               placeholderText="Select a date"
             />
           </div>
@@ -114,8 +122,8 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
             <Input
               type="text"
               name="companyName"
-              value={companyName}
-              onChange={(e) => setCompanyName(e.target.value)}
+              value={form.companyName}
+              onChange={(e) => set('companyName', e.target.value)}
               full
             />
           </div>
@@ -125,8 +133,8 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
             <Input
               type="text"
               name="companyAddress"
-              value={companyAddress}
-              onChange={(e) => setCompanyAddress(e.target.value)}
+              value={form.companyAddress}
+              onChange={(e) => set('companyAddress', e.target.value)}
               full
             />
           </div>
@@ -136,8 +144,8 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
             <Input
               type="text"
               name="companyCity"
-              value={companyCity}
-              onChange={(e) => setCompanyCity(e.target.value)}
+              value={form.companyCity}
+              onChange={(e) => set('companyCity', e.target.value)}
               full
             />
           </div>
@@ -147,8 +155,8 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
             <Input
               type="text"
               name="companyState"
-              value={companyState}
-              onChange={(e) => setCompanyState(e.target.value)}
+              value={form.companyState}
+              onChange={(e) => set('companyState', e.target.value)}
               full
             />
           </div>
@@ -158,8 +166,8 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
             <Input
               type="text"
               name="poc"
-              value={poc}
-              onChange={(e) => setPoc(e.target.value)}
+              value={form.poc}
+              onChange={(e) => set('poc', e.target.value)}
               full
             />
           </div>
@@ -169,8 +177,8 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
             <Input
               type="text"
               name="pocTitle"
-              value={pocTitle}
-              onChange={(e) => setPocTitle(e.target.value)}
+              value={form.pocTitle}
+              onChange={(e) => set('pocTitle', e.target.value)}
               full
             />
           </div>

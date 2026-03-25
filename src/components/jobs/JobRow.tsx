@@ -17,6 +17,8 @@ const JobRowGrid: FC<JobRowGridProps> = ({ job, onClickDelete, onClickArchive })
   const [expanded, setExpanded] = useState(false);
   const [editingField, setEditingField] = useState<string | null>(null);
   const [editingValue, setEditingValue] = useState('');
+  const [editingOriginal, setEditingOriginal] = useState('');
+  const [editingLink, setEditingLink] = useState<{ group: 'primary' | 'secondary', url: string, text: string } | null>(null);
   const [addingInterview, setAddingInterview] = useState(false);
   const [addingComment, setAddingComment] = useState(false);
   const [newInterview, setNewInterview] = useState('');
@@ -38,18 +40,80 @@ const JobRowGrid: FC<JobRowGridProps> = ({ job, onClickDelete, onClickArchive })
   function startEdit(field: string, value: string) {
     setEditingField(field);
     setEditingValue(value);
+    setEditingOriginal(value);
   }
 
   function saveEdit() {
-    if (editingField) {
+    if (editingField && editingValue !== editingOriginal) {
       updateJob({ ...job, [editingField]: editingValue });
-      setEditingField(null);
     }
+    setEditingField(null);
   }
 
   function cancelEdit() {
     setEditingField(null);
     setEditingValue('');
+    setEditingOriginal('');
+  }
+
+  function saveLinkEdit() {
+    if (!editingLink) return;
+    const { group, url, text } = editingLink;
+    const urlField = group === 'primary' ? 'primaryLink' : 'secondaryLink';
+    const textField = group === 'primary' ? 'primaryLinkText' : 'secondaryLinkText';
+    const originalUrl = job[urlField] || '';
+    const originalText = job[textField] || '';
+    if (url !== originalUrl || text !== originalText) {
+      updateJob({ ...job, [urlField]: url, [textField]: text });
+    }
+    setEditingLink(null);
+  }
+
+  function renderLinkItem(group: 'primary' | 'secondary') {
+    const url = job[group === 'primary' ? 'primaryLink' : 'secondaryLink'] || '';
+    const text = job[group === 'primary' ? 'primaryLinkText' : 'secondaryLinkText'] || '';
+    const label = group === 'primary' ? 'Primary' : 'Secondary';
+
+    if (editingLink?.group === group) {
+      return (
+        <div className="--link-edit">
+          <input
+            autoFocus
+            className="--inline-input --link-url-input"
+            placeholder="URL"
+            value={editingLink.url}
+            onChange={e => setEditingLink({ ...editingLink, url: e.target.value })}
+            onKeyDown={e => { if (e.key === 'Enter') saveLinkEdit(); if (e.key === 'Escape') setEditingLink(null); }}
+          />
+          <input
+            className="--inline-input --link-text-input"
+            placeholder="Display text"
+            value={editingLink.text}
+            onChange={e => setEditingLink({ ...editingLink, text: e.target.value })}
+            onKeyDown={e => { if (e.key === 'Enter') saveLinkEdit(); if (e.key === 'Escape') setEditingLink(null); }}
+          />
+          <ActionButton iconClass="fas fa-check" color="green" size="sm" onClick={saveLinkEdit} />
+          <ActionButton iconClass="fas fa-times" color="red" size="sm" onClick={() => setEditingLink(null)} />
+        </div>
+      );
+    }
+
+    let isValid = false;
+    try { new URL(url); isValid = true; } catch {}
+    const display = text || url;
+
+    return (
+      <div className="--link-read">
+        <span className="--link-label">{label}</span>
+        {display
+          ? isValid
+            ? <a className="--link-anchor" href={url} target="_blank" rel="noopener noreferrer">{display}</a>
+            : <><span>{display}</span><span className="--invalid-url">invalid URL</span></>
+          : <span className="--empty">none</span>
+        }
+        <ActionButton iconClass="fas fa-pencil-alt" color="blue" size="sm" onClick={() => setEditingLink({ group, url, text })} />
+      </div>
+    );
   }
 
   function renderEditable(field: string, value: string) {
@@ -69,7 +133,7 @@ const JobRowGrid: FC<JobRowGridProps> = ({ job, onClickDelete, onClickArchive })
       );
     }
     return (
-      <span className="--editable" onDoubleClick={() => startEdit(field, value)}>
+      <span title={value} className="--editable" onDoubleClick={() => startEdit(field, value)}>
         {value}
       </span>
     );
@@ -108,8 +172,8 @@ const JobRowGrid: FC<JobRowGridProps> = ({ job, onClickDelete, onClickArchive })
           />
         </div>
 
-        <div className="--truncate">{renderEditable('jobTitle', job.jobTitle)}</div>
         <div className="--truncate">{renderEditable('companyName', job.companyName)}</div>
+        <div className="--truncate">{renderEditable('jobTitle', job.jobTitle)}</div>
         <div className="--truncate">
           {editingField === 'dateApplied'
             ? (
@@ -190,11 +254,19 @@ const JobRowGrid: FC<JobRowGridProps> = ({ job, onClickDelete, onClickArchive })
       <div className={`--expansion-wrapper${expanded ? " is-open" : ""}`}>
         <div className="--expansion-inner">
           <div className="--expanded-content">
+            <div className="--links-bar">
+              {renderLinkItem('primary')}
+              {renderLinkItem('secondary')}
+            </div>
             <div className="--expanded-row">
               <div className="--address">
                 <h4>Company Address</h4>
                 <p>{renderEditable('companyAddress', job.companyAddress)}</p>
-                <p className="--city-state">{renderEditable('companyCity', job.companyCity)}, {renderEditable('companyState', job.companyState)}</p>
+                <p className="--city-state">
+                  {renderEditable('companyCity', job.companyCity)}
+                  {job.companyCity && job.companyState ? ', ' : ''}
+                  {renderEditable('companyState', job.companyState)}
+                </p>
               </div>
 
               <div className="--poc">

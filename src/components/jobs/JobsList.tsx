@@ -11,8 +11,30 @@ const JobsList: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalState, setModalState] = useState<Obj>({ type: null, item: null });
   const [filterParams, setFilterParams] = useState<Record<string, any> | undefined>(undefined);
+  const [sortBy, setSortBy] = useState<string | null>(null);
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
 
-  const { data: jobs } = useGetJobs(filterParams);
+  const queryParams = sortBy ? { ...(filterParams || {}), sortBy, sortDir } : filterParams;
+  const { data: jobs } = useGetJobs(queryParams);
+
+  function handleSort(field: string) {
+    if (sortBy === field) {
+      setSortDir(d => d === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortBy(field);
+      setSortDir('asc');
+    }
+  }
+
+  function renderSortHeader(label: string, field: string) {
+    const isActive = sortBy === field;
+    const icon = isActive ? (sortDir === 'asc' ? 'fa-sort-up' : 'fa-sort-down') : 'fa-sort';
+    return (
+      <div className="--sortable-header" onClick={() => handleSort(field)}>
+        {label} <i className={`fas ${icon}`} />
+      </div>
+    );
+  }
   const { mutate: deleteJob } = useDeleteJob();
   const { mutate: updateJob } = useUpdateJob();
 
@@ -64,12 +86,12 @@ const JobsList: FC = () => {
       <div className="jobs-grid">
         <div className="jobs-grid-header">
           <div></div>
-          <div>Job Title</div>
-          <div>Company</div>
-          <div>Date Applied</div>
-          <div>Recruiter</div>
-          <div>Work From</div>
-          <div>Status</div>
+          {renderSortHeader('Company', 'companyName')}
+          {renderSortHeader('Job Title', 'jobTitle')}
+          {renderSortHeader('Date Applied', 'dateApplied')}
+          {renderSortHeader('Recruiter', 'recruiter')}
+          {renderSortHeader('Work From', 'workFrom')}
+          {renderSortHeader('Status', 'status')}
           <div></div>
         </div>
         {jobs?.map((j: any) => (

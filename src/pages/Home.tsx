@@ -13,8 +13,8 @@ const Home: React.FC = () => {
       <h1>Hey there, Too!</h1>
       {user && (
         <>
-          <RecruitersList />
           <JobsList />
+          <RecruitersList />
         </>
       )}
       <button onClick={() => navigate('/job-search/derp')}>Derp!</button>

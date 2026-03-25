@@ -1,7 +1,9 @@
 .jobs-container {
   min-height: 300px;
   padding: 12px;
-  width: 1200px;
+  width: 1400px;
+  border-radius: 160px;
+  border: 1px solid red;
 
   & > h2 {
     font-size: 36px;
@@ -41,21 +43,52 @@
 }
 
 .jobs-grid {
+  max-height: 800px;
+  overflow-y: auto;
+  position: relative;
   width: 100%;
 }
 
 .jobs-grid-header,
 .job-grid-row {
   display: grid;
-  grid-template-columns: 40px 2fr 1.5fr 160px 1fr 120px 150px 70px;
+  grid-template-columns: 40px 1.5fr 2fr 160px 1fr 120px 150px 70px;
 }
 
 .jobs-grid-header {
+  background-color: #fff;
   border-bottom: 2px solid #ccc;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 
   & > div {
     font-weight: 600;
     padding: 8px 12px;
+  }
+}
+
+.--sortable-header {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  font-weight: 600;
+  gap: 6px;
+  padding: 8px 12px;
+  user-select: none;
+
+  &:hover {
+    color: #555;
+  }
+
+  & > i {
+    color: #aaa;
+    font-size: 12px;
+  }
+
+  & > i.fa-sort-up,
+  & > i.fa-sort-down {
+    color: #333;
   }
 }
 
@@ -82,7 +115,13 @@
   }
 
   & > .--toggle-cell {
-    padding: 10px 4px;
+    padding: 0;
+
+    & button {
+      height: 100%;
+      padding: 10px 8px;
+      width: 100%;
+    }
   }
 
   & > .--actions {
@@ -164,6 +203,13 @@
   width: 130px;
 }
 
+.jobs-filter-checks {
+  display: flex;
+  flex-basis: 100%;
+  justify-content: center;
+  gap: 16px;
+}
+
 .jobs-filter-checkbox {
   align-items: center;
   display: flex;
@@ -175,6 +221,57 @@
 .jobs-filter-actions {
   display: flex;
   gap: 6px;
+}
+
+.--links-bar {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 12px;
+
+  & .--link-read,
+  & .--link-edit {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    font-size: 14px;
+    gap: 8px;
+  }
+
+  & .--link-label {
+    color: #888;
+    font-size: 11px;
+    font-weight: 600;
+    min-width: 55px;
+    text-transform: uppercase;
+  }
+
+  & .--link-anchor {
+    color: #2563eb;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  & .--invalid-url {
+    color: #aaa;
+    font-size: 12px;
+    margin-left: 4px;
+  }
+
+  & .--empty {
+    color: #bbb;
+    font-style: italic;
+  }
+
+  & .--link-edit {
+    & .--link-url-input {
+      flex: 3;
+    }
+
+    & .--link-text-input {
+      flex: 1;
+      min-width: 80px;
+    }
+  }
 }
 
 .--section {
