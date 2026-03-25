@@ -1,4 +1,4 @@
-import { FC, SyntheticEvent, useState } from "react";
+import { FC, SyntheticEvent, useEffect, useState } from "react";
 import { Modal, Button, Label, Input, Select } from "@bka-stuff/mfe-utils";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,22 +10,23 @@ type JobModalProps = {
   onClose: () => void;
 }
 
-const EMPTY_FORM = {
-  jobTitle: '',
-  workFrom: 'remote',
-  recruiter: '',
-  dateApplied: null as Date | null,
-  companyName: '',
-  companyAddress: '',
-  companyCity: '',
-  companyState: '',
-  poc: '',
-  pocTitle: '',
-};
-
 const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
-  const [form, setForm] = useState(EMPTY_FORM);
   const { data: recruiters } = useGetRecruiters();
+
+  const EMPTY_FORM = {
+    jobTitle: '',
+    workFrom: 'remote',
+    recruiter: '',
+    dateApplied: new Date() as Date | null,
+    companyName: '',
+    companyAddress: '',
+    companyCity: '',
+    companyState: '',
+    poc: '',
+    pocTitle: '',
+  };
+
+  const [form, setForm] = useState(EMPTY_FORM);
   const { mutate: createJob } = useCreateJob();
 
   function set(field: string, value: any) {
@@ -44,6 +45,7 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
       workFrom: form.workFrom,
       dateApplied: form.dateApplied?.toISOString(),
       companyName: form.companyName,
+      status: 'applied',
     };
     if (form.recruiter) jobToSave.recruiter = form.recruiter;
     if (form.companyAddress) jobToSave.companyAddress = form.companyAddress;
@@ -75,6 +77,17 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
               onChange={(e) => set('jobTitle', e.target.value)}
               full
               autofocus
+            />
+          </div>
+
+          <div>
+            <Label text="Company Name *" />
+            <Input
+              type="text"
+              name="companyName"
+              value={form.companyName}
+              onChange={(e) => set('companyName', e.target.value)}
+              full
             />
           </div>
 
@@ -114,17 +127,6 @@ const JobModal: FC<JobModalProps> = ({ isOpen, onClose }) => {
               selected={form.dateApplied}
               onChange={(date: Date | null) => set('dateApplied', date)}
               placeholderText="Select a date"
-            />
-          </div>
-
-          <div>
-            <Label text="Company Name *" />
-            <Input
-              type="text"
-              name="companyName"
-              value={form.companyName}
-              onChange={(e) => set('companyName', e.target.value)}
-              full
             />
           </div>
 

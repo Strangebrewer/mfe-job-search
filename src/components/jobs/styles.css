@@ -174,11 +174,13 @@
   gap: 12px;
   margin-bottom: 16px;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .jobs-filter-fields {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   flex-wrap: wrap;
   flex: 1;
@@ -217,6 +219,9 @@
 }
 
 .jobs-filter-actions {
+  position: absolute;
+  right: 16px;
+  top: 0;
   display: flex;
   gap: 6px;
 }
