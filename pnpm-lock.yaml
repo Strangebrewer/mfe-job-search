@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@bka-stuff/mfe-utils':
         specifier: github:Strangebrewer/mfe-utils#main
-        version: https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/af930c9d37942b1eb8a237dc55e5fea6143c0cbf(@types/react@18.3.27)(axios@1.13.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/627daa351f26a69430c0420b38fa4b3093b97597(@types/react@18.3.27)(axios@1.13.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tanstack/react-query':
         specifier: ^5.90.21
         version: 5.95.0(react@18.3.1)
@@ -111,8 +111,8 @@ packages:
     resolution: {integrity: sha512-qSs4ifwzKJSV39ucNjsvc6WVHs6b7S03sOh2OcHF9UHfVPqWWALUsNUVzhSBiItjRZoLHx7nIarVjqKVusUZ1Q==, tarball: https://registry.npmjs.org/@babel/helper-validator-identifier/-/helper-validator-identifier-7.28.5.tgz}
     engines: {node: '>=6.9.0'}
 
-  '@bka-stuff/mfe-utils@https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/af930c9d37942b1eb8a237dc55e5fea6143c0cbf':
-    resolution: {tarball: https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/af930c9d37942b1eb8a237dc55e5fea6143c0cbf}
+  '@bka-stuff/mfe-utils@https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/627daa351f26a69430c0420b38fa4b3093b97597':
+    resolution: {tarball: https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/627daa351f26a69430c0420b38fa4b3093b97597}
     version: 0.1.0
     peerDependencies:
       axios: 1.13.6
@@ -2167,7 +2167,7 @@ snapshots:
 
   '@babel/helper-validator-identifier@7.28.5': {}
 
-  '@bka-stuff/mfe-utils@https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/af930c9d37942b1eb8a237dc55e5fea6143c0cbf(@types/react@18.3.27)(axios@1.13.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@bka-stuff/mfe-utils@https://codeload.github.com/Strangebrewer/mfe-utils/tar.gz/627daa351f26a69430c0420b38fa4b3093b97597(@types/react@18.3.27)(axios@1.13.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       axios: 1.13.6
       jwt-decode: 4.0.0
